@@ -1,5 +1,7 @@
-﻿Public Class Form1
+﻿
 
+
+Public Class Form1
 
     Private Sub btnNewWord_Click(sender As Object, e As EventArgs) Handles btnNewWord.Click
         ' Determine whether the word contains five letters.
@@ -28,12 +30,26 @@
 
         If strWord.Contains(strLetter) Then
             ' Replace the hyphen(s) in strResult.
-
+            For intIndex As Integer = 0 To strWord.Length - 1
+                If strWord(intIndex) = strLetter Then
+                    strResult = strResult.Remove(intIndex, 1)
+                    strResult = strResult.Insert(intIndex, strLetter)
+                End If
+            Next intIndex
             ' Display the contents of strResult.
+            lblResult.Text = strResult
 
             ' Determine whether strResult contains any hyphens.
-
-            ' Else
+            If strResult.Contains("-") = False Then
+                MessageBox.Show("You guessed it: " & strWord,
+"Guess the Word Game",
+                MessageBoxButtons.OK, MessageBoxIcon.Information)
+                grpWord.Enabled = True
+                grpLetter.Enabled = False
+                lblResult.Text = String.Empty
+                txtWord.Focus()
+            End If
+        Else
             MessageBox.Show("Try again!", "Guess the Word Game",
                  MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
@@ -62,7 +78,7 @@
         Randomize()
         random = Rnd() * index
         Do Until currentline = random
-            Label2.Text = sr2.readline
+            txtWord.Text = sr2.ReadLine
             currentline += 1
         Loop
     End Sub

@@ -4,7 +4,7 @@
 Public Class Form1
     Dim strWord As String
 
-    Private Sub btnNewWord_Click(sender As Object, e As EventArgs) Handles btnNewWord.Click
+    Private Sub btnNewWord_Click(sender As Object, e As EventArgs)
         ' Determine whether the word contains five letters.
 
         'If txtWord.Text.Trim.ToUpper Like "[A-Z][A-Z][A-Z][A-Z][A-Z]" Then
@@ -43,7 +43,7 @@ Public Class Form1
         End If
 
         For i As Integer = 1 To Len(strWord.TrimEnd)
-            If strWord = " "
+            If strWord = " " Then
 
             End If
             lblResult.Text += "-" + " "
@@ -77,10 +77,9 @@ Public Class Form1
                 MessageBox.Show("You guessed it: " & strWord,
 "Guess the Word Game",
                 MessageBoxButtons.OK, MessageBoxIcon.Information)
-                grpWord.Enabled = True
                 grpLetter.Enabled = False
                 lblResult.Text = String.Empty
-                txtWord.Focus()
+                Label2.Focus()
             End If
         Else
             MessageBox.Show("Try again!", "Guess the Word Game",
@@ -89,16 +88,184 @@ Public Class Form1
         txtLetter.Text = String.Empty
     End Sub
 
-    Private Sub txtWord_Enter(sender As Object, e As EventArgs) Handles txtWord.Enter
-        txtWord.SelectAll()
-    End Sub
-
     Private Sub txtLetter_Enter(sender As Object, e As EventArgs) Handles txtLetter.Enter
         txtLetter.SelectAll()
     End Sub
 
+    Private Sub btnA_Click(sender As Object, e As EventArgs) Handles btnA.Click
+        Dim strA As String
+        Dim strLetter As String
+        Dim strResult As String
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs)
+        strLetter = txtLetter.Text.Trim
+        strResult = lblResult.Text.ToUpper
+
+        strA = "A"
+        btnA.Enabled = False
+        If lblResult.Text.Contains(strA) Then
+            For intIndex As Integer = 0 To strResult.Length - 1
+                If strResult(intIndex) = strA Then
+
+                    strLetter = strLetter.Insert(intIndex, strA)
+                    strLetter = strLetter.Remove(intIndex + 1, 1)
+                    strResult = strResult.Insert(intIndex, strA)
+                    strResult = strResult.Remove(intIndex + 1, 1)
+                End If
+            Next
+        End If
+        lblResult.Text = strResult
+
+        Label2.Text = strWord
+        If strWord.Contains(strA) Then
+            ' Replace the hyphen(s) in strResult.
+            For intIndex As Integer = 0 To strWord.Length - 1
+                If strWord(intIndex) = strLetter Then
+                    strResult = strResult.Remove(intIndex * 2, 1)
+                    strResult = strResult.Insert(intIndex * 2, strLetter)
+                End If
+            Next intIndex
+            ' Display the contents of strResult.
+            lblResult.Text = strResult
+
+            If strResult.Contains("-") = False Then
+                MessageBox.Show("You guessed it: " & strWord,
+"Guess the Word Game",
+            MessageBoxButtons.OK, MessageBoxIcon.Information)
+                grpLetter.Enabled = False
+                lblResult.Text = String.Empty
+                Label2.Focus()
+            End If
+        Else
+            MessageBox.Show("Try again!", "Guess the Word Game",
+             MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+
+        txtLetter.Text = String.Empty
+        MsgBox(strWord & " " & strA)
+    End Sub
+
+    Private Sub btnB_Click(sender As Object, e As EventArgs) Handles btnB.Click
+        Dim strB As String
+        Dim strLetter As String
+        Dim strResult As String
+
+        strLetter = txtLetter.Text.Trim
+        strResult = lblResult.Text
+
+        strB = "B"
+        btnB.Enabled = False
+        If lblResult.Text.Contains(strB) Then
+            For intIndex As Integer = 0 To strResult.Length - 1
+                If strResult(intIndex) = strB Then
+
+                    strLetter = strLetter.Insert(intIndex, strB)
+                    strLetter = strLetter.Remove(intIndex + 1, 1)
+                    strResult = strResult.Insert(intIndex, strB)
+                    strResult = strResult.Remove(intIndex + 1, 1)
+                End If
+            Next
+        End If
+        lblResult.Text = strResult
+    End Sub
+
+    Private Sub btnC_Click(sender As Object, e As EventArgs) Handles btnC.Click
+        Dim strC As String
+        Dim strLetter As String
+        Dim strResult As String
+
+        strLetter = txtLetter.Text.Trim
+        strResult = lblResult.Text
+
+        strC = "C"
+        btnC.Enabled = False
+        If lblResult.Text.Contains(strC) Then
+            For intIndex As Integer = 0 To strResult.Length - 1
+                If strResult(intIndex) = strC Then
+
+                    strLetter = strLetter.Insert(intIndex, strC)
+                    strLetter = strLetter.Remove(intIndex + 1, 1)
+                    strResult = strResult.Insert(intIndex, strC)
+                    strResult = strResult.Remove(intIndex + 1, 1)
+                End If
+            Next
+        End If
+        lblResult.Text = strResult
+    End Sub
+
+    Private Sub btnD_Click(sender As Object, e As EventArgs) Handles btnD.Click
+        Dim strD As String
+        Dim strLetter As String
+        Dim strResult As String
+
+        strLetter = txtLetter.Text.Trim
+        strResult = lblResult.Text
+
+        strD = "D"
+        btnD.Enabled = False
+        If lblResult.Text.Contains(strD) Then
+            For intIndex As Integer = 0 To strResult.Length - 1
+                If strResult(intIndex) = strD Then
+
+                    strLetter = strLetter.Insert(intIndex, strD)
+                    strLetter = strLetter.Remove(intIndex + 1, 1)
+                    strResult = strResult.Insert(intIndex, strD)
+                    strResult = strResult.Remove(intIndex + 1, 1)
+                End If
+            Next
+        End If
+        lblResult.Text = strResult
+    End Sub
+
+    Private Sub btnE_Click(sender As Object, e As EventArgs) Handles btnE.Click
+        Dim strE As String
+        Dim strLetter As String
+        Dim strResult As String
+
+        strLetter = txtLetter.Text.Trim
+        strResult = lblResult.Text
+
+        strE = "E"
+        btnE.Enabled = False
+        If lblResult.Text.Contains(strE) Then
+            For intIndex As Integer = 0 To strResult.Length - 1
+                If strResult(intIndex) = strE Then
+
+                    strLetter = strLetter.Insert(intIndex, strE)
+                    strLetter = strLetter.Remove(intIndex + 1, 1)
+                    strResult = strResult.Insert(intIndex, strE)
+                    strResult = strResult.Remove(intIndex + 1, 1)
+                End If
+            Next
+        End If
+        lblResult.Text = strResult
+
+        Label2.Text = strWord
+        If strWord.Contains(strE) Then
+            ' Replace the hyphen(s) in strResult.
+            For intIndex As Integer = 0 To strWord.Length - 1
+                If strWord(intIndex) = strLetter Then
+                    strResult = strResult.Remove(intIndex * 2, 1)
+                    strResult = strResult.Insert(intIndex * 2, strLetter)
+                End If
+            Next intIndex
+            ' Display the contents of strResult.
+            lblResult.Text = strResult
+
+            If strResult.Contains("-") = False Then
+                MessageBox.Show("You guessed it: " & strWord,
+"Guess the Word Game",
+            MessageBoxButtons.OK, MessageBoxIcon.Information)
+                grpLetter.Enabled = False
+                lblResult.Text = String.Empty
+                Label2.Focus()
+            End If
+        Else
+            MessageBox.Show("Try again!", "Guess the Word Game",
+             MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+
+        txtLetter.Text = String.Empty
+
 
     End Sub
 End Class
